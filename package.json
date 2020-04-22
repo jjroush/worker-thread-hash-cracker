@@ -1,0 +1,21 @@
+{
+  "name": "worker-thread-hash-cracker",
+  "version": "1.0.0",
+  "description": "Demo of Node.js Worker Threads through MD5 hash cracking",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node single-thread-crack.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjroush/worker-thread-hash-cracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjroush/worker-thread-hash-cracker/issues"
+  },
+  "homepage": "https://github.com/jjroush/worker-thread-hash-cracker#readme"
+}
