@@ -1,15 +1,13 @@
-import crypto from 'crypto';
+import crypto from 'crypto'
+import {passwordArray} from './helpers.js'
 
-const crack = (hashInput = '42f58798317292157b589727933614d8') => {
+const crack = (hashInput = '29c3eea3f305d6b823f562ac4be35217') => {
     console.time("timer");
-
     let match;
-
-    for (let i = 0; i <= 99999999; i++) {
-        const hash = crypto.createHash('md5').update(i.toString()).digest('hex');
+    for (let i = 0; i < passwordArray.length; i++) {
+        const hash = crypto.createHash('md5').update(passwordArray[i]).digest('hex');
         if (hash === hashInput) {
-            match = i;
-            console.log('match')
+            match = passwordArray[i];
         }
     }
     console.log(match)

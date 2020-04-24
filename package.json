@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node single-thread-crack.js",
+    "start-no-thread": "node single-thread-crack.js",
     "start-threaded": "node --max-old-space-size=5000 multi-thread-crack.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,26 +1,30 @@
-import {Worker} from 'worker_threads';
+import {Worker} from 'worker_threads'
+import {passwordArray, chunkArray} from './helpers.js'
 
-let passwordList = [];
-console.time("timer");
-for (let i = 1; i <= 99999999; i++)
-    passwordList.push(i.toString().padStart(6, '0'));
+let threads = 1;
+let promiseArray = [];
+const hash = process.argv[2]
 
-const worker1 = new Promise((resolve, reject) => {
-    const workera1 = new Worker('./worker.js', {workerData: passwordList.slice(0, 22222222)});
-    workera1.on('message', resolve);
-});
+if (process.argv[3])
+    threads = process.argv[3];
 
-const worker2 = new Promise((resolve, reject) => {
-    const workera2 = new Worker('./worker.js', {workerData: passwordList.slice(22222223, 555555555)});
-    workera2.on('message', resolve);
-});
+const chunkedArray = chunkArray(passwordArray, threads);
+console.log(`Spinning up ${threads} worker threads.`);
 
-const worker3 = new Promise((resolve, reject) => {
-    const workera3 = new Worker('./worker.js', {workerData: passwordList.slice(55555556, 99999999)});
-    workera3.on('message', resolve);
-});
+console.time('timer');
 
-Promise.all([worker1, worker2, worker3]).then(values => {
-    console.log(values);
+for (let i = 0; i < threads; i++) {
+    promiseArray.push(
+        new Promise((resolve, reject) => {            
+            const worker = new Worker('./worker.js', {workerData: chunkedArray[i]});
+            worker.on('message', resolve);
+        })
+    )
+}
+
+Promise.all(promiseArray).then(values => {
+    const result = values.filter(result => result);
+    
+    console.log(`Passcode from hash: ${result[0]}`);
     console.timeEnd('timer');
 });

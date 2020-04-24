@@ -6,10 +6,10 @@ let passcode;
 workerData.forEach(item => {
     const hash = crypto.createHash('md5').update(item.toString()).digest('hex');
 
-    if (hash === '42f58798317292157b589727933614d8') {
+    if (hash === '29c3eea3f305d6b823f562ac4be35217') {
         passcode = item;
     }
 })
 
 if(!passcode) passcode = null
-parentPort.postMessage({ passcode })
+parentPort.postMessage( passcode )
