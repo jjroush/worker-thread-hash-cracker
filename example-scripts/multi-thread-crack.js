@@ -1,9 +1,18 @@
 import {Worker} from 'worker_threads'
-import {passwordArray, chunkArray} from './helpers.js'
+import readline from 'readline'
+
+import {passwordArray, chunkArray} from '../helpers.js'
 
 let threads = 1;
 let promiseArray = [];
 const hash = process.argv[2]
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.on('line', (line) => console.log(`Node echo: ${line}`));
 
 if (process.argv[3])
     threads = process.argv[3];
@@ -27,4 +36,5 @@ Promise.all(promiseArray).then(values => {
     
     console.log(`Passcode from hash: ${result[0]}`);
     console.timeEnd('timer');
+    rl.close();
 });

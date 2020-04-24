@@ -5,9 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start-no-thread": "node single-thread-crack.js",
-    "start-threaded": "node --max-old-space-size=5000 multi-thread-crack.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-no-workers": "node example-scripts/single-thread-crack.js",
+    "start-with-workers": "node --max-old-space-size=5000 example-scripts/multi-thread-crack.js"
   },
   "repository": {
     "type": "git",
