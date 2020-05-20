@@ -12,7 +12,7 @@ rl.on('line', (line) => console.log(`Node echo: ${line}`));
 
 console.log('Started hashing. (~20 seconds to completion)')
 
-const crack = (hashInput = '29c3eea3f305d6b823f562ac4be35217') => {
+const crack = (hashInput) => {
     console.time('Time taken to hash a million passcodes:');
     let match;
     for (let i = 0; i < passwordArray.length; i++) {
@@ -27,4 +27,4 @@ const crack = (hashInput = '29c3eea3f305d6b823f562ac4be35217') => {
     setTimeout(() => rl.close(), 2000);
 }
 
-crack();
+crack(process.argv[2]);

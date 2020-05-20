@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start-no-workers": "node example-scripts/single-thread-crack.js",
+    "single-thread-crack": "node example-scripts/single-thread-crack.js",
     "start-with-workers": "node --max-old-space-size=5000 example-scripts/multi-thread-crack.js"
   },
   "repository": {

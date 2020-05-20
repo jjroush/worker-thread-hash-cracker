@@ -10,7 +10,7 @@ export const chunkArray = (array, parts) => {
     const chunkSize = Math.ceil(array.length / parts);
 
     for (let i = 0; i < array.length; i += chunkSize) {
-        const chunk = array.slice(i, i+chunkSize);
+        const chunk = array.slice(i, i + chunkSize);
 
         tempArray.push(chunk)
     }
